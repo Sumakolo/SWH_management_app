@@ -1,0 +1,4 @@
+001;Varju;12345;Torma;Laszlo;1997;Kisvarda;Budapest
+002;Sumi;54321;Kis;Bence;2003;Miskolc;Debrecen
+003;Surfer;beadando;Nagy;Peter;2000;Budapest;Budapest
+004;JimmyFan98;zambojimmy;Deak;Dorina;1998;Nyiregyhaza;Sopron
