@@ -5,12 +5,19 @@
 <html>
 <head>
     <title>List of Users</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
 
     <h1>List Users</h1>
     <a href="/Home/Login">Back to the login screen!</a>
+
+    <input class="form-control" id="myInput" type="text" onkeyup="myFunction()" placeholder="Search..">
 
     <table class="table table-striped">
         <thead>
@@ -25,20 +32,36 @@
             </tr>
         </thead>
 
-        <tbody>
+        <tbody id="myTable">
             @foreach (var item in Model)
             {
-            <tr>
-                <th scope="row">@item.UserID</th>
-                <td>@item.UserName</td>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
-                <td>@item.BirthYear</td>
-                <td>@item.BirthPlace</td>
-                <td>@item.City</td>
-            </tr>
+                <tr>
+                    <th scope="row">@item.UserID</th>
+                    <td>@item.UserName</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.BirthYear</td>
+                    <td>@item.BirthPlace</td>
+                    <td>@item.City</td>
+                </tr>
             }
         </tbody>
-        </table>
+    </table>
+
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                if (value.length < 3) {
+                    return;
+                }
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
 </body>
 </html>
