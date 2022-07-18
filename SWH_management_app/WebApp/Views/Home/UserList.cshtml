@@ -35,7 +35,8 @@
         <tbody id="myTable">
             @foreach (var item in Model)
             {
-                <tr>
+             
+                <tr onclick="editUserWindow(item)">
                     <th scope="row">@item.UserID</th>
                     <td>@item.UserName</td>
                     <td>@item.FirstName</td>
@@ -47,6 +48,10 @@
             }
         </tbody>
     </table>
+
+    <br />  
+    <button id="xml">  
+        Export to XML (not working)</button>  
 
     <script>
         $(document).ready(function () {

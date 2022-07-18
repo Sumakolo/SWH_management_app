@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApp.DataHandle;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -32,6 +33,13 @@ namespace WebApp.Controllers
             {
                 return HttpNotFound();
             }
+        }
+
+        [HttpPost]
+        public ActionResult EditUser(User user)
+        {
+            repository.UpdateUser(user);
+            return View("UserList", repository.users.AsQueryable());
         }
     }
 }
