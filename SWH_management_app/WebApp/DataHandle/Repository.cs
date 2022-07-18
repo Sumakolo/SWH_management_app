@@ -10,7 +10,7 @@ namespace WebApp.DataHandle
 {
     public class Repository : IRepository
     {
-        private static List<User> users { get; set; }
+        public List<User> users { get; set; }
 
         //possible upgrade, not needed by the specification
         public void CreateUser(User user)

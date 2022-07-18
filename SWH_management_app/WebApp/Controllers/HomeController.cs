@@ -21,13 +21,12 @@ namespace WebApp.Controllers
             return View();
         }
 
-
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
             if (repository.Login(username, password))
             {
-                return View("UserList");
+                return View("UserList", repository.users.AsQueryable());
             }
             else
             {
