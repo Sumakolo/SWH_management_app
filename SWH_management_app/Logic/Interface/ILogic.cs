@@ -5,16 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository.Interface
+namespace Logic.Interface
 {
-    interface IRepository
+    interface ILogic
     {
         string[] GetRawDatas();
         void OverWriteDatas(ICollection<User> users);
         User GetUser(string data);
-        ICollection<User> GetAllUsers(string [] lines);
+        ICollection<User> GetAllUsers(string[] lines);
         void CreateUser(User user);
         void UpdateUser(User user);
-        void DeleteUserByID(int id); 
+        void DeleteUserByID(int id);
     }
 }

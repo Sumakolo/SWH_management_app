@@ -25,11 +25,21 @@ namespace Repository
         }
 
         /// <summary>
+        /// Reads the text file which holds the users' properties.
+        /// </summary>
+        /// <returns>string[]</returns>
+        public string[] GetRawDatas()
+        {
+            string[] lines = File.ReadAllLines(@"D:\Munka\SWH_management_app\database.txt");
+            return lines;
+        }
+
+        /// <summary>
         /// Gets all users from a string in a list.
         /// </summary>
         /// <param name="lines"></param>
         /// <returns>List<User></returns>
-        public ICollection<User> GetAllUsers(string [] lines)
+        public ICollection<User> GetAllUsers(string[] lines)
         {
             users = new List<User>();
             for (int i = 0; i < lines.Length; i++)
@@ -40,13 +50,23 @@ namespace Repository
         }
 
         /// <summary>
-        /// Reads the text file which holds the users' properties.
+        /// Get a User from a line of data
         /// </summary>
-        /// <returns>string[]</returns>
-        public string[] GetRawDatas()
+        /// <param name="data"></param>
+        /// <returns>User</returns>
+        public User GetUser(string data)
         {
-            string[] lines = File.ReadAllLines(@"D:\Munka\SWH_management_app\database.txt");
-            return lines;
+            User user = new User();
+            string[] properties = data.Split(';');
+            user.UserID = int.Parse(properties[0]);
+            user.UserName = properties[1];
+            user.Password = int.Parse(properties[2]);
+            user.FirstName = properties[3];
+            user.LastName = properties[4];
+            user.BirthYear = int.Parse(properties[5]);
+            user.BirthPlace = properties[6];
+            user.City = properties[7];
+            return user;
         }
 
         /// <summary>
@@ -70,21 +90,10 @@ namespace Repository
             }
         }
 
-        public User GetUser(string data)
-        {
-            User user = new User();
-            string[] properties = data.Split(';');
-            user.UserID = int.Parse(properties[0]);
-            user.UserName = properties[1];
-            user.Password = int.Parse(properties[2]);
-            user.FirstName = properties[3];
-            user.LastName = properties[4];
-            user.BirthYear = int.Parse(properties[5]);
-            user.BirthPlace = properties[6];
-            user.City = properties[7];
-            return user;
-        }
-
+        /// <summary>
+        /// Update a User according to changes.
+        /// </summary>
+        /// <param name="user"></param>
         public void UpdateUser(User user)
         {
             int i = 0;
@@ -108,6 +117,11 @@ namespace Repository
             }
         }
 
+        /// <summary>
+        /// Convert the users list to on string.
+        /// </summary>
+        /// <param name="users"></param>
+        /// <returns>string</returns>
         private string ConvertListToString(ICollection<User> users)
         {
             string helper = "";
